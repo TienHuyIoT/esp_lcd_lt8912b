@@ -75,8 +75,7 @@ typedef struct {
  *      - ESP_ERR_NO_MEM: Create LCD panel failed because of memory allocation failure
  *      - ESP_FAIL: Create LCD panel failed because of other errors
  */
-esp_err_t esp_lcd_new_panel_lt8912b(const esp_lcd_panel_lt8912b_io_t *io,
-                                    const esp_lcd_panel_dev_config_t *panel_dev_config, esp_lcd_panel_handle_t *ret_panel);
+esp_err_t esp_lcd_new_panel_lt8912b(const esp_lcd_panel_lt8912b_io_t *io, const esp_lcd_panel_dev_config_t *panel_dev_config, esp_lcd_panel_handle_t *ret_panel);
 
 /**
  * @brief Return true if HDMI is ready
@@ -136,7 +135,7 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
  */
 #define ESP_LCD_LT8912B_VIDEO_TIMING_800x600_60Hz() \
     {                               \
-        .hfp            = 48,       \
+        .hfp            = 40,       \
         .hs             = 128,      \
         .hbp            = 88,       \
         .hact           = 800,      \
@@ -149,7 +148,7 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
         .h_polarity     = 1,        \
         .v_polarity     = 1,        \
         .vic            = 0,        \
-        .aspect_ratio   = LT8912B_ASPECT_RATION_16_9, \
+        .aspect_ratio   = LT8912B_ASPECT_RATION_4_3, \
         .pclk_mhz       = 40,    \
     }
 
@@ -166,7 +165,7 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
             .v_size = 600,                       \
             .hsync_back_porch = 88,                        \
             .hsync_pulse_width = 128,                      \
-            .hsync_front_porch = 48,                       \
+            .hsync_front_porch = 40,                       \
             .vsync_back_porch = 23,                        \
             .vsync_pulse_width = 4,                        \
             .vsync_front_porch = 1,                        \
@@ -186,22 +185,22 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
         .hact           = 1024,     \
         .htotal         = 1184,     \
         .vfp            = 3,        \
-        .vs             = 4,        \
-        .vbp            = 15,       \
+        .vs             = 5,        \
+        .vbp            = 69,       \
         .vact           = 768,      \
-        .vtotal         = 790,      \
+        .vtotal         = 845,      \
         .h_polarity     = 1,        \
         .v_polarity     = 0,        \
         .vic            = 0,        \
-        .aspect_ratio   = LT8912B_ASPECT_RATION_16_9, \
-        .pclk_mhz       = 56,    \
+        .aspect_ratio   = LT8912B_ASPECT_RATION_4_3, \
+        .pclk_mhz       = 60,    \
     }
 
 #define LT8912B_1024x768_PANEL_60HZ_DPI_CONFIG() LT8912B_1024x768_PANEL_60HZ_DPI_CONFIG_WITH_FBS(1)
 #define LT8912B_1024x768_PANEL_60HZ_DPI_CONFIG_WITH_FBS(NUM_FBS) \
     {                           \
         .dpi_clk_src = MIPI_DSI_DPI_CLK_SRC_DEFAULT,       \
-        .dpi_clock_freq_mhz = 56,                          \
+        .dpi_clock_freq_mhz = 60,                          \
         .virtual_channel = 0,                              \
         .in_color_format = LCD_COLOR_PIXEL_FORMAT_RGB888,     \
         .num_fbs = NUM_FBS,                                      \
@@ -211,8 +210,8 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
             .hsync_back_porch = 80,                        \
             .hsync_pulse_width = 32,                      \
             .hsync_front_porch = 48,                       \
-            .vsync_back_porch = 15,                        \
-            .vsync_pulse_width = 4,                        \
+            .vsync_back_porch = 69,                        \
+            .vsync_pulse_width = 5,                        \
             .vsync_front_porch = 3,                        \
         },                                                 \
         .flags.disable_lp = true,                          \
@@ -224,11 +223,11 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
  */
 #define ESP_LCD_LT8912B_VIDEO_TIMING_1280x720_60Hz() \
     {                               \
-        .hfp            = 48,      \
+        .hfp            = 10,      \
         .hs             = 32,       \
-        .hbp            = 80,      \
+        .hbp            = 28,      \
         .hact           = 1280,     \
-        .htotal         = 1440,     \
+        .htotal         = 1350,     \
         .vfp            = 3,        \
         .vs             = 5,        \
         .vbp            = 13,       \
@@ -236,25 +235,25 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
         .vtotal         = 741,      \
         .h_polarity     = 1,        \
         .v_polarity     = 0,        \
-        .vic            = 0,        \
+        .vic            = 4,        \
         .aspect_ratio   = LT8912B_ASPECT_RATION_16_9, \
-        .pclk_mhz       = 64,    \
+        .pclk_mhz       = 60,    \
     }
 
 #define LT8912B_1280x720_PANEL_60HZ_DPI_CONFIG() LT8912B_1280x720_PANEL_60HZ_DPI_CONFIG_WITH_FBS(1)
 #define LT8912B_1280x720_PANEL_60HZ_DPI_CONFIG_WITH_FBS(NUM_FBS) \
     {                           \
         .dpi_clk_src = MIPI_DSI_DPI_CLK_SRC_DEFAULT,       \
-        .dpi_clock_freq_mhz = 64,                          \
+        .dpi_clock_freq_mhz = 60,                          \
         .virtual_channel = 0,                              \
         .in_color_format = LCD_COLOR_PIXEL_FORMAT_RGB888,     \
         .num_fbs = NUM_FBS,                                      \
         .video_timing = {                                  \
             .h_size = 1280,                       \
             .v_size = 720,                       \
-            .hsync_back_porch = 80,                        \
+            .hsync_back_porch = 28,                        \
             .hsync_pulse_width = 32,                      \
-            .hsync_front_porch = 48,                       \
+            .hsync_front_porch = 10,                       \
             .vsync_back_porch = 13,                        \
             .vsync_pulse_width = 5,                        \
             .vsync_front_porch = 3,                        \
@@ -274,22 +273,22 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
         .hact           = 1280,     \
         .htotal         = 1440,     \
         .vfp            = 3,        \
-        .vs             = 6,        \
-        .vbp            = 14,       \
+        .vs             = 5,        \
+        .vbp            = 25,       \
         .vact           = 800,      \
-        .vtotal         = 823,      \
+        .vtotal         = 833,      \
         .h_polarity     = 1,        \
         .v_polarity     = 0,        \
         .vic            = 0,        \
-        .aspect_ratio   = LT8912B_ASPECT_RATION_16_9, \
-        .pclk_mhz       = 70,    \
+        .aspect_ratio   = LT8912B_ASPECT_RATION_NO, \
+        .pclk_mhz       = 60,    \
     }
 
 #define LT8912B_1280x800_PANEL_60HZ_DPI_CONFIG() LT8912B_1280x800_PANEL_60HZ_DPI_CONFIG_WITH_FBS(1)
 #define LT8912B_1280x800_PANEL_60HZ_DPI_CONFIG_WITH_FBS(NUM_FBS) \
     {                           \
         .dpi_clk_src = MIPI_DSI_DPI_CLK_SRC_DEFAULT,       \
-        .dpi_clock_freq_mhz = 70,                          \
+        .dpi_clock_freq_mhz = 60,                          \
         .virtual_channel = 0,                              \
         .in_color_format = LCD_COLOR_PIXEL_FORMAT_RGB888,     \
         .num_fbs = NUM_FBS,                                      \
@@ -299,8 +298,8 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
             .hsync_back_porch = 80,                        \
             .hsync_pulse_width = 32,                      \
             .hsync_front_porch = 48,                       \
-            .vsync_back_porch = 14,                        \
-            .vsync_pulse_width = 6,                        \
+            .vsync_back_porch = 25,                        \
+            .vsync_pulse_width = 5,                        \
             .vsync_front_porch = 3,                        \
         },                                                 \
         .flags.disable_lp = true,                          \
@@ -308,6 +307,7 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
 
 /**
  * @brief Video timing configuration structure (1920x1080 30Hz)
+ * @note  80 MHz pixel clock may cause DMA underruns. No confirmed working 1080p mode on ESP32-P4.
  *
  */
 #define ESP_LCD_LT8912B_VIDEO_TIMING_1920x1080_30Hz() \
@@ -319,21 +319,21 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
         .htotal         = 2080,     \
         .vfp            = 3,        \
         .vs             = 5,        \
-        .vbp            = 8,       \
+        .vbp            = 194,      \
         .vact           = 1080,     \
-        .vtotal         = 1096,     \
+        .vtotal         = 1282,     \
         .h_polarity     = 1,        \
         .v_polarity     = 0,        \
         .vic            = 0,       \
         .aspect_ratio   = LT8912B_ASPECT_RATION_16_9, \
-        .pclk_mhz       = 70,   \
+        .pclk_mhz       = 80,   \
     }
 
 #define LT8912B_1920x1080_PANEL_30HZ_DPI_CONFIG() LT8912B_1920x1080_PANEL_30HZ_DPI_CONFIG_WITH_FBS(1)
 #define LT8912B_1920x1080_PANEL_30HZ_DPI_CONFIG_WITH_FBS(NUM_FBS) \
     {                           \
         .dpi_clk_src = MIPI_DSI_DPI_CLK_SRC_DEFAULT,       \
-        .dpi_clock_freq_mhz = 70,                          \
+        .dpi_clock_freq_mhz = 80,                          \
         .virtual_channel = 0,                              \
         .in_color_format = LCD_COLOR_PIXEL_FORMAT_RGB888,     \
         .num_fbs = NUM_FBS,                                      \
@@ -343,7 +343,7 @@ bool esp_lcd_panel_lt8912b_is_ready(esp_lcd_panel_t *panel);
             .hsync_back_porch = 80,                        \
             .hsync_pulse_width = 32,                      \
             .hsync_front_porch = 48,                       \
-            .vsync_back_porch = 8,                        \
+            .vsync_back_porch = 194,                       \
             .vsync_pulse_width = 5,                        \
             .vsync_front_porch = 3,                        \
         },                                                 \
